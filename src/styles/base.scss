@@ -1,5 +1,8 @@
-$nana: #bb1010;
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap');
 
-.App {
-  color: $nana;
+.Container {
+  margin: 0 auto;
+}
+body {
+  font-family: 'Muli', sans-serif;
 }
