@@ -10,12 +10,8 @@ const Login: React.FC = () => {
     };
     console.log(user);
     try {
-      const res = await axios.get('http://localhost:4000/users');
-      console.log('response', res);
-      res.data.forEach((u: { email: string; password: string }) => {
-        /* if (u === user) console.log('logo'); */
-        console.log(u);
-      });
+      const res = await axios.post('http://localhost:4000/login', user);
+      console.log('Authorization: Bearer ' + res.data.accessToken);
     } catch (e) {
       console.log('error', e);
     }
@@ -55,7 +51,6 @@ const Login: React.FC = () => {
             id="userPassword"
             type="password"
             placeholder="Your password"
-            min="6"
             required
           />
         </div>

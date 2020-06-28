@@ -10,8 +10,8 @@ const Register: React.FC = () => {
     };
     console.log(user);
     try {
-      const res = await axios.post('http://localhost:4000/users', user);
-      console.log('response', res);
+      const res = await axios.post('http://localhost:4000/register', user);
+      console.log('Authorization: Bearer ' + res.data.accessToken);
     } catch (e) {
       console.log('error', e);
     }

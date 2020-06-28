@@ -1,13 +1,29 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './styles/main.scss';
+import Login from './pages/Login';
+import Posts from './pages/Posts';
+import Register from './pages/Register';
+import Users from './pages/Users';
 
-const App: React.FC = () => {
-  return (
-    <div>
-      <div className="App mt-2 text-2xl font-bold">Hello</div>
-      <div className="mt-2 text-gray-nanana">world!</div>
-    </div>
-  );
+interface AppProps {
+  page: string;
+}
+
+const App: React.FC<AppProps> = props => {
+  const { page } = props;
+  const [token, setToken] = useState();
+
+  return page === '/' ? (
+    <Register />
+  ) : page === 'login' ? (
+    <Login />
+  ) : page === 'posts' ? (
+    <Posts />
+  ) : page === 'register' ? (
+    <Register />
+  ) : page === 'users' ? (
+    <Users />
+  ) : null;
 };
 
 export default App;
