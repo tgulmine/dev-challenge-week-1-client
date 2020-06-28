@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 
 const Register: React.FC = () => {
+  function isLogged() {
+    if (localStorage.getItem('access_token') === '') return false;
+    return true;
+  }
+
+  useEffect(() => {
+    if (isLogged()) window.location.pathname = '/';
+  }, []);
+
   async function registerUser(email: string, password: string) {
     const user = {
       email: email,
@@ -12,6 +21,9 @@ const Register: React.FC = () => {
     try {
       const res = await axios.post('http://localhost:4000/register', user);
       console.log('Authorization: Bearer ' + res.data.accessToken);
+      localStorage.setItem('access_token', res.data.accessToken);
+      localStorage.setItem('email', user.email);
+      window.location.pathname = '/';
     } catch (e) {
       console.log('error', e);
     }

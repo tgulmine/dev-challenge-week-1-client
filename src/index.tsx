@@ -9,13 +9,18 @@ import './styles/main.scss';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+function isLogged() {
+  if (localStorage.getItem('access_token') === '') return false;
+  return true;
+}
+
 ReactDOM.render(
   <Router>
-    <Route exact path="/" component={() => <App page={'/'} />} />
-    <Route exact path="/login" component={() => <App page={'login'} />} />
-    <Route exact path="/posts" component={() => <App page={'posts'} />} />
-    <Route exact path="/register" component={() => <App page={'register'} />} />
-    <Route exact path="/users" component={() => <App page={'users'} />} />
+    <Route exact path="/" component={isLogged() ? Posts : Login} />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/posts" component={Posts} />
+    <Route exact path="/register" component={Register} />
+    <Route exact path="/users" component={Users} />
   </Router>,
   document.getElementById('root')
 );
