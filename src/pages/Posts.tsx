@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import Navbar from '../components/Navbar';
 
 const Posts: React.FC = () => {

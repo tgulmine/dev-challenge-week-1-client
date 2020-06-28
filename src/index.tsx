@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import Login from './pages/Login';
 import Posts from './pages/Posts';
 import Register from './pages/Register';
