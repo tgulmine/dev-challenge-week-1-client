@@ -22,7 +22,7 @@ const Login: React.FC = () => {
       const res = await axios.post('http://localhost:4000/login', user);
       console.log('Authorization: Bearer ' + res.data.accessToken);
       localStorage.setItem('access_token', res.data.accessToken);
-      //localStorage.getItem('access_token');
+      window.location.pathname = '/';
     } catch (e) {
       console.log('error', e);
     }

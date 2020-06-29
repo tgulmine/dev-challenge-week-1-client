@@ -68,8 +68,8 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       {localStorage.getItem('access_token') !== '' ? (
-        <div className="text-lg flex items-center w-1/4 justify-between">
-          <div className="w-2/3 text-base pt-1">Logged as {getEmail()}</div>
+        <div className="text-lg flex items-center w-1/4 justify-between pt-1">
+          <div className="w-2/3 text-base">Logged as {getEmail()}</div>
           <button className="w-1/3 hover:text-blue-700 text-blue-400 font-bold focus:outline-none" type="button" onClick={() => logOut()}>
             Logout
           </button>
