@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 
 const Register: React.FC = () => {
+  const [errorMsg, setErrorMsg] = useState(null);
+
   function isLogged() {
     if (localStorage.getItem('access_token') === '') return false;
     return true;
@@ -25,7 +27,8 @@ const Register: React.FC = () => {
       localStorage.setItem('email', user.email);
       window.location.pathname = '/';
     } catch (e) {
-      console.log('error', e);
+      console.log('error', e.response.data);
+      setErrorMsg(e.response.data);
     }
   }
 
@@ -75,6 +78,7 @@ const Register: React.FC = () => {
           Register
         </button>
       </div>
+      {errorMsg ? <div className="mt-4 text-red-500 text-base text-center font-bold">{errorMsg}</div> : null}
     </div>
   );
 };

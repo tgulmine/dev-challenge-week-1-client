@@ -11,6 +11,7 @@ const Posts: React.FC = () => {
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [showMsgDelete, setShowMsgDelete] = useState(false);
   const [showMsgPost, setShowMsgPost] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   function isLogged() {
     if (localStorage.getItem('access_token') === '') return false;
@@ -32,7 +33,8 @@ const Posts: React.FC = () => {
       console.log(posts);
       console.log(res);
     } catch (e) {
-      console.log('error', e);
+      console.log('error', e.response.data);
+      setErrorMsg(e.response.data);
     }
   }
 
@@ -50,7 +52,8 @@ const Posts: React.FC = () => {
       console.log(res);
       window.location.pathname = '/';
     } catch (e) {
-      console.log('error', e);
+      console.log('error', e.response.data);
+      setErrorMsg(e.response.data);
     }
   }
 
@@ -91,7 +94,8 @@ const Posts: React.FC = () => {
       console.log(res);
       window.location.pathname = '/';
     } catch (e) {
-      console.log('error', e);
+      console.log('error', e.response.data);
+      setErrorMsg(e.response.data);
     }
   }
 
@@ -99,6 +103,7 @@ const Posts: React.FC = () => {
     <div className="flex flex-col w-full h-auto items-center">
       <Navbar />
       <div className="mt-8 mb-8 text-xl font-bold">Post List</div>
+      {errorMsg ? <div className="mt-4 text-red-500 text-base text-center font-bold">{errorMsg}</div> : null}
       {showMsgDelete ? (
         <div className="mb-4 text-red-400 text-base text-center font-bold">É preciso estar logado para deletar um post</div>
       ) : null}
